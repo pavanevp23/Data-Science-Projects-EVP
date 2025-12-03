@@ -1,4 +1,5 @@
-from google import genai
+# from google import genai
+import google.generativeai as genai
 from dotenv import load_dotenv
 import streamlit as st
 from langchain_core.prompts import load_prompt
