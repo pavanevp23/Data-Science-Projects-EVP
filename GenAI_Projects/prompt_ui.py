@@ -1,9 +1,11 @@
-# from google import genai
-import google.generativeai as genai
+from google import genai
+# import google.generativeai as genai
 from dotenv import load_dotenv
 import streamlit as st
 from langchain_core.prompts import load_prompt
 import os
+from pathlib import Path
+
 
 load_dotenv()
 
@@ -15,7 +17,10 @@ style_input = st.selectbox("Select Explanation Style", ["Beginner-Friendly", "Te
 
 length_input = st.selectbox("Select Explanation Length", ["Short (1-2 paragraphs)", "Medium (3-5 paragraphs)", "Long (detailed explanation)"])
 
-template = load_prompt('template.json')
+# template = load_prompt('template.json')
+BASE_DIR = Path(__file__).parent
+template_path = BASE_DIR / "template.json"
+template = load_prompt(str(template_path))
 
 if st.button('Summarize'):
     client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
